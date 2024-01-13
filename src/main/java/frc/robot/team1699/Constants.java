@@ -13,6 +13,7 @@ public class Constants {
     public static final int kIntakeSolenoidReversePort = 2;
 
     public static final int kDriverID = 0;
+    public static final int kOpID = 1;
 
     public static class IntakeHopperConstants {
         public static final double intakePercent = .4;

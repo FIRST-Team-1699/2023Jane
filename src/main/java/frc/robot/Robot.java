@@ -30,7 +30,8 @@ public class Robot extends TimedRobot {
   private Drivetrain drive = new Drivetrain();
   private IntakeHopper intakeHopper = new IntakeHopper();
   private Compressor compressor = new Compressor(1, PneumaticsModuleType.CTREPCM);
-  private XboxController controller = new XboxController(Constants.kDriverID);
+  private XboxController driveController = new XboxController(Constants.kDriverID);
+  private XboxController opController = new XboxController(Constants.kOpID);
 
   @Override
   public void robotInit() {
@@ -54,9 +55,9 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     drive.runArcadeDrive(controller.getLeftY(), -controller.getRightX());
-    if(controller.getRightTriggerAxis() > 0) {
+    if(opController.getRightTriggerAxis() > 0) {
       intakeHopper.setWantedState(IntakeHopperState.INTAKING);
-    } else if(controller.getLeftTriggerAxis() > 0) {
+    } else if(opController.getLeftTriggerAxis() > 0) {
       intakeHopper.setWantedState(IntakeHopperState.OUTTAKING);
     } else {
       intakeHopper.setWantedState(IntakeHopperState.STORED);
